@@ -64,7 +64,7 @@ Namespace RichEditAPISample.CodeExamples
             ' The distance between cells will be 4 mm.
             document.Unit = DevExpress.Office.DocumentUnit.Millimeter
             table.TableCellSpacing = 2
-            ' Change the color of empty space between cells.
+            ' Change the color of space between cells.
             table.TableBackgroundColor = System.Drawing.Color.Violet
             'Change cell background color.
             table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf TableHelper.ChangeCellColor))
@@ -99,16 +99,16 @@ Namespace RichEditAPISample.CodeExamples
             tStyleMain.FontName = "Segoe Condensed"
             tStyleMain.FontSize = 14
             tStyleMain.Alignment = DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Center
-            tStyleMain.TableBorders.InsideHorizontalBorder.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.Dotted
-            tStyleMain.TableBorders.InsideVerticalBorder.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.Dotted
+            tStyleMain.TableBorders.InsideHorizontalBorder.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.Dotted
+            tStyleMain.TableBorders.InsideVerticalBorder.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.Dotted
             tStyleMain.TableBorders.Top.LineThickness = 1.5F
-            tStyleMain.TableBorders.Top.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.[Double]
+            tStyleMain.TableBorders.Top.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double]
             tStyleMain.TableBorders.Left.LineThickness = 1.5F
-            tStyleMain.TableBorders.Left.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.[Double]
+            tStyleMain.TableBorders.Left.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double]
             tStyleMain.TableBorders.Bottom.LineThickness = 1.5F
-            tStyleMain.TableBorders.Bottom.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.[Double]
+            tStyleMain.TableBorders.Bottom.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double]
             tStyleMain.TableBorders.Right.LineThickness = 1.5F
-            tStyleMain.TableBorders.Right.LineStyle = DevExpress.XtraRichEdit.API.Native.TableBorderLineStyle.[Double]
+            tStyleMain.TableBorders.Right.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double]
             tStyleMain.CellBackgroundColor = System.Drawing.Color.LightBlue
             tStyleMain.TableLayout = DevExpress.XtraRichEdit.API.Native.TableLayoutType.Fixed
             tStyleMain.Name = "MyTableStyle"
@@ -134,7 +134,7 @@ Namespace RichEditAPISample.CodeExamples
 #Region "#UseConditionalStyle"
             document.LoadDocument("Documents//TableStyles.docx", DevExpress.XtraRichEdit.DocumentFormat.OpenXml)
             document.BeginUpdate()
-            ' Create a new style that is based on the 'Grid Table 5 Dark Accent 1' style defined in the loaded document.
+            ' Create a new style based on the 'Grid Table 5 Dark Accent 1' style defined in the loaded document.
             Dim myNewStyle As DevExpress.XtraRichEdit.API.Native.TableStyle = document.TableStyles.CreateNew()
             myNewStyle.Parent = document.TableStyles("Grid Table 5 Dark Accent 1")
             ' Create conditional styles (styles for table elements)
@@ -209,7 +209,7 @@ Namespace RichEditAPISample.CodeExamples
         Private Shared Sub SplitCells(ByVal document As DevExpress.XtraRichEdit.API.Native.Document)
 #Region "#SplitCells"
             Dim table As DevExpress.XtraRichEdit.API.Native.Table = document.Tables.Create(document.Range.Start, 3, 3, DevExpress.XtraRichEdit.API.Native.AutoFitBehaviorType.FixedColumnWidth, 350)
-            'split a cell to three: 
+            'split a cell into three: 
             table.Cell(CInt((2)), CInt((1))).Split(1, 3)
 #End Region  ' #SplitCells
         End Sub
