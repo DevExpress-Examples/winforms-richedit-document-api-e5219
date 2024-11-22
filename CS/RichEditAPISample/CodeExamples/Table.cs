@@ -111,16 +111,16 @@ namespace RichEditAPISample.CodeExamples
             tStyleMain.FontName = "Segoe Condensed";
             tStyleMain.FontSize = 14;
             tStyleMain.Alignment = ParagraphAlignment.Center;
-            tStyleMain.TableBorders.InsideHorizontalBorder.LineStyle = TableBorderLineStyle.Dotted;
-            tStyleMain.TableBorders.InsideVerticalBorder.LineStyle = TableBorderLineStyle.Dotted;
+            tStyleMain.TableBorders.InsideHorizontalBorder.LineStyle = BorderLineStyle.Dotted;
+            tStyleMain.TableBorders.InsideVerticalBorder.LineStyle = BorderLineStyle.Dotted;
             tStyleMain.TableBorders.Top.LineThickness = 1.5f;
-            tStyleMain.TableBorders.Top.LineStyle = TableBorderLineStyle.Double;
+            tStyleMain.TableBorders.Top.LineStyle = BorderLineStyle.Double;
             tStyleMain.TableBorders.Left.LineThickness = 1.5f;
-            tStyleMain.TableBorders.Left.LineStyle = TableBorderLineStyle.Double;
+            tStyleMain.TableBorders.Left.LineStyle = BorderLineStyle.Double;
             tStyleMain.TableBorders.Bottom.LineThickness = 1.5f;
-            tStyleMain.TableBorders.Bottom.LineStyle = TableBorderLineStyle.Double;
+            tStyleMain.TableBorders.Bottom.LineStyle = BorderLineStyle.Double;
             tStyleMain.TableBorders.Right.LineThickness = 1.5f;
-            tStyleMain.TableBorders.Right.LineStyle = TableBorderLineStyle.Double;
+            tStyleMain.TableBorders.Right.LineStyle = BorderLineStyle.Double;
             tStyleMain.CellBackgroundColor = System.Drawing.Color.LightBlue;
             tStyleMain.TableLayout = TableLayoutType.Fixed;
             tStyleMain.Name = "MyTableStyle";
@@ -169,7 +169,7 @@ namespace RichEditAPISample.CodeExamples
             // Create a new table and apply a new style.
             Table table = document.Tables.Create(document.Range.End, 4, 4, AutoFitBehaviorType.AutoFitToWindow);
             table.Style = myNewStyle;
-            // Specify which conditonal styles are in effect.
+            // Specify which conditional styles are in effect.
             table.TableLook = TableLookTypes.ApplyFirstRow | TableLookTypes.ApplyFirstColumn;
 
             document.EndUpdate();
@@ -234,7 +234,7 @@ namespace RichEditAPISample.CodeExamples
         {
             #region #SplitCells
             Table table = document.Tables.Create(document.Range.Start, 3, 3, AutoFitBehaviorType.FixedColumnWidth, 350);
-            //split a cell to three: 
+            //split a cell into three: 
             table.Cell(2, 1).Split(1, 3);
             #endregion #SplitCells
         }
