@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraRichEdit.API.Native;
+﻿using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
 using System;
 using System.Drawing;
 
@@ -43,7 +44,7 @@ namespace RichEditAPISample.CodeExamples
             document.EndUpdateCharacters(cp);
             #endregion #ResetCharacterFormatting
         }
-        
+
         static void FormatParagraph(Document document)
         {
             #region #FormatParagraph
@@ -92,5 +93,78 @@ namespace RichEditAPISample.CodeExamples
             document.EndUpdateParagraphs(cp);
             #endregion #ResetParagraphFormatting
         }
+
+        static void FormatParagraphBorders(Document document)
+        {
+            #region #FormatParagraphBorders
+            // Start to edit the document.
+            document.BeginUpdate();
+
+            // Append text to the document.
+            document.AppendText(String.Format("Modified Paragraph" +
+                Environment.NewLine + "Normal" + Environment.NewLine + "Normal"));
+
+            // Finalize to edit the document.
+            document.EndUpdate();
+
+            // Obtain the first and last paragraph ranges
+            Paragraph firstParagraph = document.Paragraphs[0];
+            Paragraph thirdParagraph = document.Paragraphs[2];
+            DocumentRange paragraphRange = document.CreateRange(firstParagraph.Range.Start,
+                            thirdParagraph.Range.End.ToInt() - firstParagraph.Range.Start.ToInt());
+
+            // Start to edit the paragraph.
+            ParagraphProperties pp = document.BeginUpdateParagraphs(paragraphRange);
+            BorderHelper.SetBorder(pp.Borders.HorizontalBorder);
+            BorderHelper.SetBorder(pp.Borders.BottomBorder);
+            BorderHelper.SetBorder(pp.Borders.TopBorder);
+            BorderHelper.SetBorder(pp.Borders.LeftBorder);
+            BorderHelper.SetBorder(pp.Borders.RightBorder);
+
+            // Finalize to edit the paragraph.
+            document.EndUpdateParagraphs(pp);
+            #endregion #FormatParagraphBorders
+        }
+        #region #@FormatParagraphBorders
+        class BorderHelper
+        {
+            public static void SetBorder(ParagraphBorder border)
+            {
+                border.LineWidth = 2f;
+                border.LineStyle = BorderLineStyle.Thick;
+                border.LineColor = Color.SteelBlue;
+            }
+        }
+        #endregion #@FormatParagraphBorders
+
+
+        static void ResetParagraphFormatting(RichEditDocumentServer wordProcessor)
+        {
+            #region #ResetParagraphFormatting
+            // Load a document from a file.
+            wordProcessor.LoadDocument("Documents\\Grimm.docx", DocumentFormat.OpenXml);
+
+            // Access a document.
+            Document document = wordProcessor.Document;
+
+            // Access the range of the document's first paragraph.
+            DocumentRange range = document.Paragraphs[0].Range;
+
+            // Start to edit the paragraph.
+            ParagraphProperties cp = document.BeginUpdateParagraphs(range);
+
+            // Set alignmment and first line indent of the target paragraph to default values.   
+            // Other paragraph properties remain intact.
+            cp.Reset(ParagraphPropertiesMask.Alignment | ParagraphPropertiesMask.FirstLineIndent);
+
+            // Finalize to edit the paragraph.
+            document.EndUpdateParagraphs(cp);
+            #endregion #ResetParagraphFormatting
+        }
+
+
+
+
     }
 }
+

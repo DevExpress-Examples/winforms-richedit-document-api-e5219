@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -119,6 +119,7 @@
     <Compile Include="CodeExamples\Shapes.cs" />
     <Compile Include="CodeExamples\Styles.cs" />
     <Compile Include="CodeExamples\Table.cs" />
+    <Compile Include="CodeExamples\VbaMacros.cs" />
     <Compile Include="CodeUtils\CodeExampleDemoUtils.cs" />
     <Compile Include="CodeUtils\ExampleFinder.cs" />
     <Compile Include="CodeUtils\CodeExampleModel.cs" />
