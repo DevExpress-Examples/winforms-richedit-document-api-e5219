@@ -67,7 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeExamples\Comments.vb" />
-    <Compile Include="CodeExamples\CustomXmlActions.vb" />
+    <Compile Include="CodeExamples\ContentControls.vb" />
+    <Compile Include="CodeExamples\CustomXmlParts.vb" />
     <Compile Include="CodeExamples\DocumentProperties.vb" />
     <Compile Include="CodeExamples\Export.vb" />
     <Compile Include="CodeExamples\Field.vb" />
@@ -86,6 +87,7 @@
     <Compile Include="CodeExamples\Shapes.vb" />
     <Compile Include="CodeExamples\Styles.vb" />
     <Compile Include="CodeExamples\Table.vb" />
+    <Compile Include="CodeExamples\VbaMacros.vb" />
     <Compile Include="CodeUtils\CodeExampleDemoUtils.vb" />
     <Compile Include="CodeUtils\ExampleFinder.vb" />
     <Compile Include="CodeUtils\CodeExampleModel.vb" />
@@ -142,6 +144,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Documents\SelectionCollection.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Documents\Simple Form Filled.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Documents\Simple Form.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Documents\TableStyles.docx">

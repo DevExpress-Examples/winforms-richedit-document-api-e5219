@@ -30,7 +30,6 @@ Namespace RichEditAPISample
 
         Protected Friend Function CompileAndRun(ByVal linesOfCode As String(), ByVal evaluationParameter As Object) As Boolean
             Dim CompilerParams As System.CodeDom.Compiler.CompilerParameters = New System.CodeDom.Compiler.CompilerParameters()
-            CompilerParams.CompilerOptions = "/import:System.Linq"
             CompilerParams.GenerateInMemory = True
             CompilerParams.TreatWarningsAsErrors = False
             CompilerParams.GenerateExecutable = False

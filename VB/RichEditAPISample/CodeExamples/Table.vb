@@ -64,17 +64,17 @@ Namespace RichEditAPISample.CodeExamples
             ' The distance between cells will be 4 mm.
             document.Unit = DevExpress.Office.DocumentUnit.Millimeter
             table.TableCellSpacing = 2
-            ' Change the color of space between cells.
+            ' Change the color of empty space between cells.
             table.TableBackgroundColor = System.Drawing.Color.Violet
             'Change cell background color.
-            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf TableHelper.ChangeCellColor))
-            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf TableHelper.ChangeCellBorderColor))
+            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf RichEditAPISample.CodeExamples.TableActions.TableHelper.ChangeCellColor))
+            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf RichEditAPISample.CodeExamples.TableActions.TableHelper.ChangeCellBorderColor))
             table.EndUpdate()
 #End Region  ' #ChangeTableColor
         End Sub
 
 #Region "#@ChangeTableColor"
-        Friend Class TableHelper
+        Private Class TableHelper
 
             Public Shared Sub ChangeCellColor(ByVal cell As DevExpress.XtraRichEdit.API.Native.TableCell, ByVal i As Integer, ByVal j As Integer)
                 cell.BackgroundColor = System.Drawing.Color.Yellow
@@ -134,7 +134,7 @@ Namespace RichEditAPISample.CodeExamples
 #Region "#UseConditionalStyle"
             document.LoadDocument("Documents//TableStyles.docx", DevExpress.XtraRichEdit.DocumentFormat.OpenXml)
             document.BeginUpdate()
-            ' Create a new style based on the 'Grid Table 5 Dark Accent 1' style defined in the loaded document.
+            ' Create a new style that is based on the 'Grid Table 5 Dark Accent 1' style defined in the loaded document.
             Dim myNewStyle As DevExpress.XtraRichEdit.API.Native.TableStyle = document.TableStyles.CreateNew()
             myNewStyle.Parent = document.TableStyles("Grid Table 5 Dark Accent 1")
             ' Create conditional styles (styles for table elements)
@@ -150,7 +150,7 @@ Namespace RichEditAPISample.CodeExamples
             ' Create a new table and apply a new style.
             Dim table As DevExpress.XtraRichEdit.API.Native.Table = document.Tables.Create(document.Range.[End], 4, 4, DevExpress.XtraRichEdit.API.Native.AutoFitBehaviorType.AutoFitToWindow)
             table.Style = myNewStyle
-            ' Specify which conditonal styles are in effect.
+            ' Specify which conditional styles are in effect.
             table.TableLook = DevExpress.XtraRichEdit.API.Native.TableLookTypes.ApplyFirstRow Or DevExpress.XtraRichEdit.API.Native.TableLookTypes.ApplyFirstColumn
             document.EndUpdate()
 #End Region  ' #UseConditionalStyle
@@ -161,13 +161,13 @@ Namespace RichEditAPISample.CodeExamples
             Dim table As DevExpress.XtraRichEdit.API.Native.Table = document.Tables.Create(document.Range.Start, 3, 10)
             table.BeginUpdate()
             'Change cell background color and vertical alignment in the third column.
-            table.ForEachRow(New DevExpress.XtraRichEdit.API.Native.TableRowProcessorDelegate(AddressOf ChangeColumnAppearanceHelper.ChangeColumnColor))
+            table.ForEachRow(New DevExpress.XtraRichEdit.API.Native.TableRowProcessorDelegate(AddressOf RichEditAPISample.CodeExamples.TableActions.ChangeColumnAppearanceHelper.ChangeColumnColor))
             table.EndUpdate()
 #End Region  ' #ChangeColumnAppearance
         End Sub
 
 #Region "#@ChangeColumnAppearance"
-        Friend Class ChangeColumnAppearanceHelper
+        Private Class ChangeColumnAppearanceHelper
 
             Public Shared Sub ChangeColumnColor(ByVal row As DevExpress.XtraRichEdit.API.Native.TableRow, ByVal rowIndex As Integer)
                 row(CInt((2))).BackgroundColor = System.Drawing.Color.LightCyan
@@ -180,13 +180,13 @@ Namespace RichEditAPISample.CodeExamples
 #Region "#UseTableCellProcessor"
             Dim table As DevExpress.XtraRichEdit.API.Native.Table = document.Tables.Create(document.Range.Start, 8, 8)
             table.BeginUpdate()
-            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf UseTableCellProcessorHelper.MakeMultiplicationCell))
+            table.ForEachCell(New DevExpress.XtraRichEdit.API.Native.TableCellProcessorDelegate(AddressOf RichEditAPISample.CodeExamples.TableActions.UseTableCellProcessorHelper.MakeMultiplicationCell))
             table.EndUpdate()
 #End Region  ' #UseTableCellProcessor
         End Sub
 
 #Region "#@UseTableCellProcessor"
-        Friend Class UseTableCellProcessorHelper
+        Private Class UseTableCellProcessorHelper
 
             Public Shared Sub MakeMultiplicationCell(ByVal cell As DevExpress.XtraRichEdit.API.Native.TableCell, ByVal i As Integer, ByVal j As Integer)
                 Dim doc As DevExpress.XtraRichEdit.API.Native.SubDocument = cell.Range.BeginUpdateDocument()

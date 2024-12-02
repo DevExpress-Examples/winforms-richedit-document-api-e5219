@@ -1,9 +1,4 @@
 Imports DevExpress.XtraRichEdit.API.Native
-Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Text
-Imports System.Threading.Tasks
 
 Namespace RichEditAPISample.CodeExamples
 
@@ -65,5 +60,43 @@ Namespace RichEditAPISample.CodeExamples
             document.Paragraphs(CInt((0))).EndUpdateTabs(tabs)
 #End Region  ' #TabStops
         End Sub
+
+        Private Shared Sub CreatePageBorders(ByVal document As DevExpress.XtraRichEdit.API.Native.Document)
+#Region "#CreatePageBorders"
+            ' Generate a document with two sections and multiple pages in each section.
+            document.AppendText(Global.Microsoft.VisualBasic.Constants.vbFormFeed & Global.Microsoft.VisualBasic.Constants.vbFormFeed & Global.Microsoft.VisualBasic.Constants.vbFormFeed)
+            document.Paragraphs.Append()
+            document.AppendSection()
+            document.AppendText(Global.Microsoft.VisualBasic.Constants.vbFormFeed & Global.Microsoft.VisualBasic.Constants.vbFormFeed)
+            Dim firstSection As DevExpress.XtraRichEdit.API.Native.Section = document.Sections(0)
+            Dim pageBorders1 As DevExpress.XtraRichEdit.API.Native.SectionPageBorders = firstSection.PageBorders
+            ' Set page borders for the first page of the first section.
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            pageBorders1.AppliesTo = DevExpress.XtraRichEdit.API.Native.PageBorderAppliesTo.FirstPage
+            Dim secondSection As DevExpress.XtraRichEdit.API.Native.Section = document.Sections(1)
+            Dim pageBorders2 As DevExpress.XtraRichEdit.API.Native.SectionPageBorders = secondSection.PageBorders
+            ' Set page borders for all pages of the second section.
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            pageBorders2.AppliesTo = DevExpress.XtraRichEdit.API.Native.PageBorderAppliesTo.AllPages
+            pageBorders2.ZOrder = DevExpress.XtraRichEdit.API.Native.PageBorderZOrder.Back
+#End Region  ' #CreatePageBorders
+        End Sub
+
+#Region "#@CreatePageBorders"
+        Private Class PageBorderHelper
+
+            Public Shared Sub SetPageBorders(ByVal border As DevExpress.XtraRichEdit.API.Native.PageBorder, ByVal lineStyle As DevExpress.XtraRichEdit.API.Native.BorderLineStyle, ByVal borderWidth As Single, ByVal color As System.Drawing.Color)
+                border.LineStyle = lineStyle
+                border.LineWidth = borderWidth
+                border.LineColor = color
+            End Sub
+        End Class
+#End Region  ' #@CreatePageBorders
     End Class
 End Namespace
