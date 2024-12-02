@@ -71,18 +71,18 @@ Namespace RichEditAPISample.CodeExamples
             Dim firstSection As DevExpress.XtraRichEdit.API.Native.Section = document.Sections(0)
             Dim pageBorders1 As DevExpress.XtraRichEdit.API.Native.SectionPageBorders = firstSection.PageBorders
             ' Set page borders for the first page of the first section.
-            PageBorderHelper.SetPageBorders(pageBorders1.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1.0F, System.Drawing.Color.Red)
-            PageBorderHelper.SetPageBorders(pageBorders1.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1.0F, System.Drawing.Color.Red)
-            PageBorderHelper.SetPageBorders(pageBorders1.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1.0F, System.Drawing.Color.Red)
-            PageBorderHelper.SetPageBorders(pageBorders1.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1.0F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders1.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Single], 1F, System.Drawing.Color.Red)
             pageBorders1.AppliesTo = DevExpress.XtraRichEdit.API.Native.PageBorderAppliesTo.FirstPage
             Dim secondSection As DevExpress.XtraRichEdit.API.Native.Section = document.Sections(1)
             Dim pageBorders2 As DevExpress.XtraRichEdit.API.Native.SectionPageBorders = secondSection.PageBorders
             ' Set page borders for all pages of the second section.
-            PageBorderHelper.SetPageBorders(pageBorders2.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
-            PageBorderHelper.SetPageBorders(pageBorders2.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
-            PageBorderHelper.SetPageBorders(pageBorders2.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
-            PageBorderHelper.SetPageBorders(pageBorders2.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.LeftBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.TopBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.RightBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
+            Call RichEditAPISample.CodeExamples.PageLayoutActions.PageBorderHelper.SetPageBorders(pageBorders2.BottomBorder, DevExpress.XtraRichEdit.API.Native.BorderLineStyle.[Double], 1.5F, System.Drawing.Color.Green)
             pageBorders2.AppliesTo = DevExpress.XtraRichEdit.API.Native.PageBorderAppliesTo.AllPages
             pageBorders2.ZOrder = DevExpress.XtraRichEdit.API.Native.PageBorderZOrder.Back
 #End Region  ' #CreatePageBorders
