@@ -5,7 +5,7 @@ Imports System.Drawing
 
 Namespace RichEditAPISample.CodeExamples
 
-    Public Module FormattingActions
+    Friend Class FormattingActions
 
         Private Sub FormatText(ByVal document As DevExpress.XtraRichEdit.API.Native.Document)
 #Region "#FormatText"
@@ -85,57 +85,42 @@ Namespace RichEditAPISample.CodeExamples
 #End Region  ' #ResetParagraphFormatting
         End Sub
 
-        Private Sub FormatParagraphBorders(ByVal document As DevExpress.XtraRichEdit.API.Native.Document)
-#Region "#FormatParagraphBorders"
+        Shared Sub FormatParagraphBorders(ByVal document As Document)
+            '			#Region "#FormatParagraphBorders"
             ' Start to edit the document.
             document.BeginUpdate()
+
             ' Append text to the document.
-            document.AppendText(System.[String].Format("Modified Paragraph" & System.Environment.NewLine & "Normal" & System.Environment.NewLine & "Normal"))
+            document.AppendText(String.Format("Modified Paragraph" & Environment.NewLine & "Normal" & Environment.NewLine & "Normal"))
+
             ' Finalize to edit the document.
             document.EndUpdate()
+
             ' Obtain the first and last paragraph ranges
-            Dim firstParagraph As DevExpress.XtraRichEdit.API.Native.Paragraph = document.Paragraphs(0)
-            Dim thirdParagraph As DevExpress.XtraRichEdit.API.Native.Paragraph = document.Paragraphs(2)
-            Dim paragraphRange As DevExpress.XtraRichEdit.API.Native.DocumentRange = document.CreateRange(firstParagraph.Range.Start, thirdParagraph.Range.[End].ToInt() - firstParagraph.Range.Start.ToInt())
+            Dim firstParagraph As Paragraph = document.Paragraphs(0)
+            Dim thirdParagraph As Paragraph = document.Paragraphs(2)
+            Dim paragraphRange As DocumentRange = document.CreateRange(firstParagraph.Range.Start, thirdParagraph.Range.End.ToInt() - firstParagraph.Range.Start.ToInt())
+
             ' Start to edit the paragraph.
-            Dim pp As DevExpress.XtraRichEdit.API.Native.ParagraphProperties = document.BeginUpdateParagraphs(paragraphRange)
-            Call RichEditAPISample.CodeExamples.FormattingActions.BorderHelper.SetBorder(pp.Borders.HorizontalBorder)
-            Call RichEditAPISample.CodeExamples.FormattingActions.BorderHelper.SetBorder(pp.Borders.BottomBorder)
-            Call RichEditAPISample.CodeExamples.FormattingActions.BorderHelper.SetBorder(pp.Borders.TopBorder)
-            Call RichEditAPISample.CodeExamples.FormattingActions.BorderHelper.SetBorder(pp.Borders.LeftBorder)
-            Call RichEditAPISample.CodeExamples.FormattingActions.BorderHelper.SetBorder(pp.Borders.RightBorder)
+            Dim pp As ParagraphProperties = document.BeginUpdateParagraphs(paragraphRange)
+            BorderHelper.SetBorder(pp.Borders.HorizontalBorder)
+            BorderHelper.SetBorder(pp.Borders.BottomBorder)
+            BorderHelper.SetBorder(pp.Borders.TopBorder)
+            BorderHelper.SetBorder(pp.Borders.LeftBorder)
+            BorderHelper.SetBorder(pp.Borders.RightBorder)
+
             ' Finalize to edit the paragraph.
             document.EndUpdateParagraphs(pp)
-#End Region  ' #FormatParagraphBorders
+            '			#End Region ' #FormatParagraphBorders
         End Sub
-
 #Region "#@FormatParagraphBorders"
-        Private Class BorderHelper
-
-            Public Shared Sub SetBorder(ByVal border As DevExpress.XtraRichEdit.API.Native.ParagraphBorder)
-                border.LineWidth = 2F
-                border.LineStyle = DevExpress.XtraRichEdit.API.Native.BorderLineStyle.Thick
-                border.LineColor = System.Drawing.Color.SteelBlue
+        Friend Class BorderHelper
+            Public Shared Sub SetBorder(ByVal border As ParagraphBorder)
+                border.LineWidth = 2.0F
+                border.LineStyle = BorderLineStyle.Thick
+                border.LineColor = Color.SteelBlue
             End Sub
         End Class
-
-#End Region  ' #@FormatParagraphBorders
-        Private Sub ResetParagraphFormatting(ByVal wordProcessor As DevExpress.XtraRichEdit.RichEditDocumentServer)
-#Region "#ResetParagraphFormatting"
-            ' Load a document from a file.
-            wordProcessor.LoadDocument("Documents\Grimm.docx", DevExpress.XtraRichEdit.DocumentFormat.OpenXml)
-            ' Access a document.
-            Dim document As DevExpress.XtraRichEdit.API.Native.Document = wordProcessor.Document
-            ' Access the range of the document's first paragraph.
-            Dim range As DevExpress.XtraRichEdit.API.Native.DocumentRange = document.Paragraphs(CInt((0))).Range
-            ' Start to edit the paragraph.
-            Dim cp As DevExpress.XtraRichEdit.API.Native.ParagraphProperties = document.BeginUpdateParagraphs(range)
-            ' Set alignmment and first line indent of the target paragraph to default values.   
-            ' Other paragraph properties remain intact.
-            cp.Reset(DevExpress.XtraRichEdit.API.Native.ParagraphPropertiesMask.Alignment Or DevExpress.XtraRichEdit.API.Native.ParagraphPropertiesMask.FirstLineIndent)
-            ' Finalize to edit the paragraph.
-            document.EndUpdateParagraphs(cp)
-#End Region  ' #ResetParagraphFormatting
-        End Sub
-    End Module
+#End Region ' #@FormatParagraphBorders
+    End Class
 End Namespace
